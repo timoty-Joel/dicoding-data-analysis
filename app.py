@@ -16,7 +16,8 @@ combined_data['datetime'] = pd.to_datetime(combined_data['datetime'])
 #For sidebar 
 selected_station = st.sidebar.multiselect(
     'Select Station', 
-    options=['All stations']+list(combined_data['station'].unique())
+    options=['All stations']+list(combined_data['station'].unique()),
+    default=['All stations']
     )
 
 start_date = st.sidebar.date_input('Start Date', min(combined_data['datetime']).date(),
@@ -34,9 +35,13 @@ combined_data['hour'] = combined_data['datetime'].dt.hour
 
 
 ## Filter the multiselect
+all_station = [station for station in combined_data['station'].unique()]
 
-if ('All Station' in selected_station) | (not selected_station):
+if not selected_station:
     filtered_data = combined_data[(combined_data['date'] >= start_datetime()) & (combined_data['date'] <= end_datetime())]
+elif 'All Station' in selected_station:
+    filtered_data = combined_data[(combined_data['station'].isin(all_station)) &
+                                  (combined_data['date'] >= start_datetime()) & (combined_data['date'] <= end_datetime())]
 else:
     filtered_data = combined_data[(combined_data['station'].isin(selected_station)) &
                                 (combined_data['date'] >= start_datetime()) & (combined_data['date'] <= end_datetime())]
