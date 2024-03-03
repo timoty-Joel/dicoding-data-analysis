@@ -45,7 +45,7 @@ else:
                                 (combined_data['date'] >= start_datetime()) & (combined_data['date'] <= end_datetime())]
 
 
-#category_counts = filtered_data.groupby('Category')['datetime'].nunique()
+
 
 category_count = combined_data['Category'].value_counts().reset_index()
 category_count.columns = ['Category', 'Count']
@@ -66,9 +66,9 @@ with col2:
     
 #print(selected_freq)
     
-data_resample = filtered_data.groupby(['station', pd.Grouper(key='datetime', freq=selected_freq[0])])[selected_factor].mean()
+data_resample = filtered_data.groupby(['station', pd.Grouper(key='datetime', freq=selected_freq[0])])[selected_factor].mean().reset_index()
 
-fig = px.line(combined_data, x='datetime', y=selected_factor, color='station',
+fig = px.line(data_resample, x='datetime', y=selected_factor, color='station',
               title=f'{selected_factor} {selected_freq} Levels by Station Over Time')
 st.plotly_chart(fig)
 
