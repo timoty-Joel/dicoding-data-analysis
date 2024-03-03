@@ -16,8 +16,7 @@ combined_data['datetime'] = pd.to_datetime(combined_data['datetime'])
 #For sidebar 
 selected_station = st.sidebar.multiselect(
     'Select Station', 
-    options=['All stations']+list(combined_data['station'].unique()),
-    default=['All stations']
+    options=['All stations']+list(combined_data['station'].unique())
     )
 
 start_date = st.sidebar.date_input('Start Date', min(combined_data['datetime']).date(),
