@@ -35,8 +35,6 @@ combined_data['hour'] = combined_data['datetime'].dt.hour
 
 
 ## Filter the multiselect
-if 'All Station' in selected_station:
-    selected_station.remove('All Station')
 
 if not selected_station:
     filtered_data = combined_data[(combined_data['date'] >= start_datetime()) & (combined_data['date'] <= end_datetime())]
