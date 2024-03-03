@@ -10,8 +10,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 st.title("Analisis Kualitas Udara di Beijing")
-combined_data = pd.read_csv('/data/concated_df.csv')
-categoric_data = pd.read_csv('/data/categoric_combined_df.csv')
+combined_data = pd.read_csv('data/concated_df.csv')
+categoric_data = pd.read_csv('data/categoric_combined_df.csv')
 
 combined_data['datetime'] = pd.to_datetime(combined_data['datetime'])
 
@@ -30,8 +30,6 @@ start_date = st.sidebar.date_input('Start Date', min(combined_data['datetime']).
 end_date = st.sidebar.date_input('End Date', max(combined_data['datetime']).date(),
                                  min_value=pd.to_datetime('2013-03-01').date(),
                                  max_value=pd.to_datetime('2017-02-28').date())
-start_hour = st.sidebar.slider('Start Hour', 0, 23, 0)
-end_hour = st.sidebar.slider('End Hour', 0, 23, 23)
 
 start_datetime = pd.to_datetime(start_date).date
 end_datetime = pd.to_datetime(end_date).date
