@@ -47,11 +47,11 @@ else:
 
 #category_counts = filtered_data.groupby('Category')['datetime'].nunique()
 
-category_counts = combined_data['Category'].value_counts().reset_index()
-category_counts.columns = ['Category', 'Count']
-category_counts['Category'] = pd.Categorical(category_counts['Category'], ordered=True)
+category_count = combined_data['Category'].value_counts().reset_index()
+category_count.columns = ['Category', 'Count']
+category_count['Category'] = pd.Categorical(category_count['Category'], ordered=True)
 #print(category_counts)
-category_counts = category_counts.sort_values('Category')
+category_count= category_count.sort_values('Category')
 
 # Chart for each polutant
 factors = ['PM2.5', 'PM10', 'SO2', 'NO2', 'CO']
@@ -73,7 +73,7 @@ fig = px.line(combined_data, x='datetime', y=selected_factor, color='station',
 st.plotly_chart(fig)
 
 # For Piechart
-fig = px.pie(category_counts, values='Count', names='Category', title='Air Quality Categories Percentage')
+fig = px.pie(category_count, values='Count', names='Category', title='Air Quality Categories Percentage')
 st.plotly_chart(fig)
 
 
