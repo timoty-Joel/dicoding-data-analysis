@@ -4,8 +4,6 @@ import numpy as np
 import seaborn as sns 
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
-import plotly.colors as PC
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -14,8 +12,6 @@ combined_data = pd.read_csv('data/concated_df.csv')
 categoric_data = pd.read_csv('data/categoric_combined_df.csv')
 
 combined_data['datetime'] = pd.to_datetime(combined_data['datetime'])
-
-cols1, cols2, cols3 = st.columns([2, 1, 1])
 
 #For sidebar 
 selected_station = st.sidebar.multiselect(
