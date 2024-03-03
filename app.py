@@ -46,8 +46,7 @@ if not selected_station:
     filtered_data = combined_data[(combined_data['date'] >= start_datetime() and combined_data['date'] <= end_datetime())]
 else:
     filtered_data = combined_data[(combined_data['station'].isin(selected_station)) &
-                                (combined_data['date'] >= start_datetime()) & (combined_data['date'] <= end_datetime()) &
-                                (combined_data['hour'] <= start_hour) & (combined_data['hour'] <= end_hour)]
+                                (combined_data['date'] >= start_datetime()) & (combined_data['date'] <= end_datetime())]
 
 
 #category_counts = filtered_data.groupby('Category')['datetime'].nunique()
